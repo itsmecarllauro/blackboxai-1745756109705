@@ -51,7 +51,7 @@ if ($role === 'cashier') {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Orders View - Coffee Shop</title>
+    <title>Orders View</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
@@ -69,15 +69,15 @@ if ($role === 'cashier') {
         <h1 class="text-xl font-bold">Orders View</h1>
         <div>
             <?php if ($role === 'admin'): ?>
-                <a href="admin_dashboard.php" class="hover:underline mr-4 text-white">Dashboard</a>
+                <a href="admin_dashboard.php" class=" mr-4 text-white">Dashboard</a>
             <?php else: ?>
-                <a href="cashier_dashboard.php" class="hover:underline mr-4 text-white">Dashboard</a>
+                <a href="cashier_dashboard.php" class=" mr-4 text-white">Dashboard</a>
             <?php endif; ?>
-            <a href="logout.php" class="hover:underline text-white">Logout</a>
+            <a href="logout.php" class=" text-white">Logout</a>
         </div>
     </header>
     <div class="mb-4">
-            <a href="admin_dashboard.php" class="inline-block text-indigo-600 hover:underline">&larr; Back to Dashboard</a>
+            <a href="admin_dashboard.php" class="inline-block text-indigo-600">&larr; Back to Dashboard</a>
         </div>
     <main class="p-6 max-w-6xl mx-auto">
         <table class="w-full bg-white rounded shadow overflow-hidden">

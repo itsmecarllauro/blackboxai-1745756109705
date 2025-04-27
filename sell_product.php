@@ -220,7 +220,7 @@ $products = $db->query("SELECT * FROM products ORDER BY category ASC, name ASC")
                 <p class="text-gray-500">No items added.</p>
             </div>
             <div class="mb-4 flex justify-between items-center">
-                <div class="font-semibold text-lg">Total: <span id="billTotal">$0.00</span></div>
+                <div class="font-semibold text-lg">Total: <span id="billTotal">₱0.00</span></div>
                 <label for="amount_paid" class="block font-semibold mb-1">Amount Paid</label>
                 <input type="number" step="0.01" min="0" id="amount_paid" name="amount_paid" value="<?php echo htmlspecialchars($amount_paid ?? ''); ?>" required class="w-32 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
             </div>
@@ -348,7 +348,7 @@ $products = $db->query("SELECT * FROM products ORDER BY category ASC, name ASC")
 
                 billItems.appendChild(div);
             });
-            billTotal.textContent = '$' + total.toFixed(2);
+            billTotal.textContent = '₱' + total.toFixed(2);
 
             // Update hidden input with order JSON
             orderInput.value = JSON.stringify(bill);
