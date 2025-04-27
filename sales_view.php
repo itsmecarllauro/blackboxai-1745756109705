@@ -134,8 +134,14 @@ if ($role === 'cashier') {
     <script>
         // Fetch order details by sale_order_id and show in modal
         function viewOrder(orderId) {
+            console.log('viewOrder called with orderId:', orderId);
             fetch('order_details.php?order_id=' + orderId)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     if (data.success) {
                         const contentDiv = document.getElementById('orderDetailsContent');
@@ -166,10 +172,10 @@ if ($role === 'cashier') {
                         contentDiv.appendChild(totalDiv);
                         document.getElementById('orderModal').classList.remove('hidden');
                     } else {
-                        alert('Failed to load order details.');
+                        alert('Failed to load order details: ' + (data.message || 'Unknown error'));
                     }
                 })
-                .catch(() => alert('Failed to load order details.'));
+                .catch(error => alert('Failed to load order details: ' + error.message));
         }
 
         function closeModal() {
