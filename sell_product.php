@@ -250,14 +250,17 @@ $products = $db->query("SELECT * FROM products ORDER BY category ASC, name ASC")
             currentCategory = category;
             const productCards = productGrid.querySelectorAll('.product-card');
             productCards.forEach(card => {
-                if (category === 'All' || card.dataset.category === category) {
+                // Show products with category matching the selected category or category 'All'
+                if (category === 'All' || card.dataset.category === category || card.dataset.category === 'All') {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
                 }
             });
             updateCategoryActive();
+            addProductCardClickListeners(); // Re-add click listeners after filtering
         }
+
 
         // Update active category highlight
         function updateCategoryActive() {
@@ -268,6 +271,10 @@ $products = $db->query("SELECT * FROM products ORDER BY category ASC, name ASC")
                 } else {
                     item.classList.remove('active');
                 }
+                // Add click event listener to category items to filter products
+                item.addEventListener('click', () => {
+                    filterProducts(item.dataset.category);
+                });
             });
         }
 
@@ -354,11 +361,14 @@ $products = $db->query("SELECT * FROM products ORDER BY category ASC, name ASC")
         });
 
         // Add click event to product cards
-        productGrid.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', () => {
-                addToBill(card.dataset.id, card.dataset.name, parseFloat(card.dataset.price));
+        function addProductCardClickListeners() {
+            productGrid.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    addToBill(card.dataset.id, card.dataset.name, parseFloat(card.dataset.price));
+                });
             });
-        });
+        }
+        addProductCardClickListeners();
 
         // Show all products initially
         filterProducts('All');
